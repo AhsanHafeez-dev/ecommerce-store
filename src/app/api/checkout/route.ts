@@ -52,31 +52,19 @@ export async function POST(req: Request) {
       });
     }
 
-    const order = await prismadb.order.create({
-      data: {
-        userId: session.user.id,
-        status: 'PENDING',
-        isPaid: false,
-        orderItems: {
-          create: productIds.map((productId: string) => ({
-            product: {
-              connect: { id: productId },
-            },
-            quantity: 1, // Assuming quantity 1 for now, will be updated with cart integration
-            price: products.find(p => p.id === productId)?.price || 0,
-          })),
-        },
-        total: products.reduce((acc, product) => acc + product.price, 0),
-      },
-    });
-
     const stripeSession = await stripe.checkout.sessions.create({
       line_items,
       mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/cart?success=1`,
+      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/order-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/cart?canceled=1`,
       metadata: {
-        orderId: order.id,
+        userId: session.user.id,
+        cartItems: JSON.stringify(productIds.map((productId: string) => ({
+          productId: productId,
+          quantity: 1,
+          price: products.find(p => p.id === productId)?.price || 0,
+        }))),
+        total: products.reduce((acc, product) => acc + product.price, 0),
       },
     });
 

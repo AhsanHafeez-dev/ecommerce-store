@@ -74,21 +74,22 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container py-8">
       <div className="flex flex-col md:flex-row gap-8 bg-white p-8 rounded-lg shadow-lg">
-        <div className="md:w-1/2 relative h-96">
+        <div className="md:w-1/2 relative h-96 rounded-lg overflow-hidden">
           <Image
             src={product.images[0]}
             alt={product.name}
-            layout="fill"
-            objectFit="contain"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            style={{ objectFit: 'contain' }}
             className="rounded-lg"
           />
         </div>
-        <div className="md:w-1/2">
+        <div className="md:w-1/2 flex flex-col justify-center">
           <h1 className="text-4xl font-bold text-gray-800 mb-4">{product.name}</h1>
-          <p className="text-gray-600 text-lg mb-2">Category: {product.category.name}</p>
-          <p className="text-gray-700 mb-4">{product.description}</p>
+          <p className="text-lg text-gray-600 mb-2">Category: <span className="font-medium text-indigo-600">{product.category.name}</span></p>
+          <p className="text-gray-700 mb-4 leading-relaxed">{product.description}</p>
           <p className="text-5xl font-extrabold text-indigo-600 mb-6">${product.price.toFixed(2)}</p>
           {product.stock === 0 ? (
             <p className="text-red-500 font-semibold text-xl mb-6">Out of Stock</p>
@@ -98,9 +99,9 @@ export default function ProductDetailPage() {
           <button
             onClick={handleAddToCart}
             disabled={product.stock === 0 || !session}
-            className={`w-full py-3 rounded-md text-lg font-medium transition duration-300 ${product.stock === 0 || !session
-                ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-indigo-600 text-white hover:bg-indigo-700'
+            className={`w-full btn-primary ${product.stock === 0 || !session
+                ? 'opacity-60 cursor-not-allowed'
+                : ''
               }`}
           >
             {product.stock === 0 ? 'Out of Stock' : session ? 'Add to Cart' : 'Sign in to Add to Cart'}

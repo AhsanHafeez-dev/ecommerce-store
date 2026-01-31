@@ -97,9 +97,6 @@ model Order {
   orderItems  OrderItem[]
   total       Float
   status      OrderStatus @default(PENDING)
-  isPaid      Boolean     @default(false)
-  address     String?     @db.Text
-  phone       String?     @db.Text
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
 }

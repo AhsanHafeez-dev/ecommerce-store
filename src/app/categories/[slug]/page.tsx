@@ -63,34 +63,33 @@ export default function CategoryDetailPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">Category: {category.name}</h1>
+    <div className="container py-8">
+      <h1 className="h1">Category: {category.name}</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {category.products.length === 0 ? (
           <p className="col-span-full text-center text-gray-600">No products found in this category.</p>
         ) : (
           category.products.map((product) => (
-            <Link href={`/products/${product.slug}`} key={product.id}>
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 cursor-pointer">
-                <div className="relative w-full h-48">
-                  <Image
-                    src={product.images[0]}
-                    alt={product.name}
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-t-lg"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold text-gray-800">{product.name}</h3>
-                  <p className="text-gray-900 font-bold mt-2">${product.price.toFixed(2)}</p>
-                  {product.stock === 0 ? (
-                    <p className="text-red-500 font-semibold mt-2">Out of Stock</p>
-                  ) : (
-                    <p className="text-green-600 font-semibold mt-2">In Stock ({product.stock})</p>
-                  )}
-                </div>
+            <Link href={`/products/${product.slug}`} key={product.id} className="card group">
+              <div className="relative w-full h-56">
+                <Image
+                  src={product.images[0]}
+                  alt={product.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{ objectFit: 'cover' }}
+                  className="rounded-t-lg group-hover:opacity-75 transition-opacity duration-300"
+                />
+              </div>
+              <div className="card-body">
+                <h3 className="text-xl font-semibold text-gray-800 group-hover:text-indigo-600 transition-colors duration-300">{product.name}</h3>
+                <p className="text-gray-900 font-bold mt-2">${product.price.toFixed(2)}</p>
+                {product.stock === 0 ? (
+                  <p className="text-red-500 font-semibold mt-2">Out of Stock</p>
+                ) : (
+                  <p className="text-green-600 font-semibold mt-2">In Stock ({product.stock})</p>
+                )}
               </div>
             </Link>
           ))

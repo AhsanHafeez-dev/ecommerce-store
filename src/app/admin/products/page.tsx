@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } => 'react';
 import axios from 'axios';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { useSession } from 'next-auth/react';
@@ -189,18 +189,18 @@ export default function AdminProductsPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold text-center mb-8">Manage Products</h1>
+    <div className="container py-8">
+      <h1 className="h1">Manage Products</h1>
 
       <div className="bg-white p-8 rounded-lg shadow-lg mb-8">
-        <h2 className="text-2xl font-semibold mb-4">{editingProduct ? 'Edit Product' : 'Add New Product'}</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-gray-800">{editingProduct ? 'Edit Product' : 'Add New Product'}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div>
             <label htmlFor="productName" className="block text-gray-700 text-sm font-bold mb-2">Product Name</label>
             <input
               type="text"
               id="productName"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="input-field"
               value={editingProduct ? editingProduct.name : newProductName}
               onChange={(e) => (editingProduct ? setEditingProduct({ ...editingProduct, name: e.target.value }) : setNewProductName(e.target.value))}
             />
@@ -210,7 +210,7 @@ export default function AdminProductsPage() {
             <textarea
               id="productDescription"
               rows={3}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="textarea-field"
               value={editingProduct ? editingProduct.description : newProductDescription}
               onChange={(e) => (editingProduct ? setEditingProduct({ ...editingProduct, description: e.target.value }) : setNewProductDescription(e.target.value))}
             ></textarea>
@@ -221,7 +221,7 @@ export default function AdminProductsPage() {
               type="number"
               id="productPrice"
               step="0.01"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="input-field"
               value={editingProduct ? editingProduct.price : newProductPrice}
               onChange={(e) => (editingProduct ? setEditingProduct({ ...editingProduct, price: parseFloat(e.target.value) }) : setNewProductPrice(parseFloat(e.target.value)))}
             />
@@ -230,7 +230,7 @@ export default function AdminProductsPage() {
             <label htmlFor="productCategory" className="block text-gray-700 text-sm font-bold mb-2">Category</label>
             <select
               id="productCategory"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="select-field"
               value={editingProduct ? editingProduct.categoryId : newProductCategory}
               onChange={(e) => (editingProduct ? setEditingProduct({ ...editingProduct, categoryId: e.target.value }) : setNewProductCategory(e.target.value))}
             >
@@ -245,7 +245,7 @@ export default function AdminProductsPage() {
             <input
               type="number"
               id="productStock"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="input-field"
               value={editingProduct ? editingProduct.stock : newProductStock}
               onChange={(e) => (editingProduct ? setEditingProduct({ ...editingProduct, stock: parseInt(e.target.value) }) : setNewProductStock(parseInt(e.target.value)))}
             />
@@ -257,17 +257,18 @@ export default function AdminProductsPage() {
               id="productImages"
               accept="image/*"
               multiple
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="input-field file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
               onChange={handleImageChange}
             />
             <div className="flex flex-wrap gap-2 mt-4">
               {(editingProduct ? editingProduct.images : newProductImages).map((image, index) => (
-                <div key={index} className="relative w-24 h-24">
+                <div key={index} className="relative w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
                   <Image
                     src={image}
                     alt="Product Image"
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    sizes="96px"
+                    style={{ objectFit: 'cover' }}
                     className="rounded-md"
                   />
                   <button
@@ -284,14 +285,14 @@ export default function AdminProductsPage() {
         </div>
         <button
           onClick={editingProduct ? handleEditProduct : handleAddProduct}
-          className={`bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-300`}
+          className="btn-primary"
         >
           {editingProduct ? 'Update Product' : 'Add Product'}
         </button>
         {editingProduct && (
           <button
             onClick={resetForm}
-            className="ml-4 bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-300"
+            className="ml-4 btn-secondary"
           >
             Cancel Edit
           </button>
@@ -299,27 +300,28 @@ export default function AdminProductsPage() {
       </div>
 
       <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-semibold mb-4">Existing Products</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-gray-800">Existing Products</h2>
         {products.length === 0 ? (
           <p className="text-center text-gray-600">No products created yet.</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((product) => (
-              <div key={product.id} className="border border-gray-200 rounded-lg p-4">
+              <div key={product.id} className="card group">
                 <div className="relative w-full h-48 mb-4">
                   <Image
                     src={product.images[0]}
                     alt={product.name}
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-md"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    style={{ objectFit: 'cover' }}
+                    className="rounded-t-lg group-hover:opacity-75 transition-opacity duration-300"
                   />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">{product.name}</h3>
-                <p className="text-gray-600">Category: {product.category.name}</p>
-                <p className="text-gray-900 font-bold mt-2">${product.price.toFixed(2)}</p>
-                <p className="text-gray-600">Stock: {product.stock}</p>
-                <div className="flex justify-end gap-2 mt-4">
+                <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-indigo-600 transition-colors duration-300 text-center">{product.name}</h3>
+                <p className="text-gray-600 text-sm text-center">Category: {product.category.name}</p>
+                <p className="text-gray-900 font-bold mt-2 text-center">${product.price.toFixed(2)}</p>
+                <p className="text-gray-600 text-center">Stock: {product.stock}</p>
+                <div className="flex justify-center gap-2 mt-4">
                   <button
                     onClick={() => setEditingProduct(product)}
                     className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600 transition duration-300"

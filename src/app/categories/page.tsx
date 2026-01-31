@@ -42,24 +42,23 @@ export default function CategoriesPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold text-center mb-8">Product Categories</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div className="container py-8">
+      <h1 className="h1">Product Categories</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {categories.map((category) => (
-          <Link href={`/categories/${category.slug}`} key={category.id}>
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 cursor-pointer">
-              <div className="relative w-full h-48">
-                <Image
-                  src={category.image}
-                  alt={category.name}
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-t-lg"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="text-xl font-semibold text-gray-800 text-center">{category.name}</h3>
-              </div>
+          <Link href={`/categories/${category.slug}`} key={category.id} className="card group">
+            <div className="relative w-full h-56">
+              <Image
+                src={category.image}
+                alt={category.name}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                style={{ objectFit: 'cover' }}
+                className="rounded-t-lg group-hover:opacity-75 transition-opacity duration-300"
+              />
+            </div>
+            <div className="card-body text-center">
+              <h3 className="text-xl font-semibold text-gray-800 group-hover:text-indigo-600 transition-colors duration-300">{category.name}</h3>
             </div>
           </Link>
         ))}

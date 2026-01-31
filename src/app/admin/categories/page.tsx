@@ -125,18 +125,18 @@ export default function AdminCategoriesPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold text-center mb-8">Manage Categories</h1>
+    <div className="container py-8">
+      <h1 className="h1">Manage Categories</h1>
 
       <div className="bg-white p-8 rounded-lg shadow-lg mb-8">
-        <h2 className="text-2xl font-semibold mb-4">{editingCategory ? 'Edit Category' : 'Add New Category'}</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-gray-800">{editingCategory ? 'Edit Category' : 'Add New Category'}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div>
             <label htmlFor="categoryName" className="block text-gray-700 text-sm font-bold mb-2">Category Name</label>
             <input
               type="text"
               id="categoryName"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="input-field"
               value={editingCategory ? editingCategory.name : newCategoryName}
               onChange={(e) => (editingCategory ? setEditingCategory({ ...editingCategory, name: e.target.value }) : setNewCategoryName(e.target.value))}
             />
@@ -147,16 +147,17 @@ export default function AdminCategoriesPage() {
               type="file"
               id="categoryImage"
               accept="image/*"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="input-field file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
               onChange={handleImageChange}
             />
             {(newCategoryImage || (editingCategory && editingCategory.image)) && (
-              <div className="relative w-32 h-32 mt-4">
+              <div className="relative w-32 h-32 mt-4 border border-gray-200 rounded-md overflow-hidden">
                 <Image
                   src={editingCategory ? editingCategory.image : newCategoryImage}
                   alt="Category Image"
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  sizes="128px"
+                  style={{ objectFit: 'cover' }}
                   className="rounded-md"
                 />
               </div>
@@ -165,14 +166,14 @@ export default function AdminCategoriesPage() {
         </div>
         <button
           onClick={editingCategory ? handleEditCategory : handleAddCategory}
-          className={`bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-300`}
+          className={`btn-primary ${editingCategory ? '' : ''}`}
         >
           {editingCategory ? 'Update Category' : 'Add Category'}
         </button>
         {editingCategory && (
           <button
             onClick={() => setEditingCategory(null)}
-            className="ml-4 bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-300"
+            className="ml-4 btn-secondary"
           >
             Cancel Edit
           </button>
@@ -180,24 +181,25 @@ export default function AdminCategoriesPage() {
       </div>
 
       <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-semibold mb-4">Existing Categories</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-gray-800">Existing Categories</h2>
         {categories.length === 0 ? (
           <p className="text-center text-gray-600">No categories created yet.</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {categories.map((category) => (
-              <div key={category.id} className="border border-gray-200 rounded-lg p-4">
+              <div key={category.id} className="card group">
                 <div className="relative w-full h-48 mb-4">
                   <Image
                     src={category.image}
                     alt={category.name}
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-md"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    style={{ objectFit: 'cover' }}
+                    className="rounded-t-lg group-hover:opacity-75 transition-opacity duration-300"
                   />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">{category.name}</h3>
-                <div className="flex justify-end gap-2">
+                <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-indigo-600 transition-colors duration-300 text-center">{category.name}</h3>
+                <div className="flex justify-center gap-2 mt-4">
                   <button
                     onClick={() => setEditingCategory(category)}
                     className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600 transition duration-300"

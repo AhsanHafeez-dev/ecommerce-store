@@ -2,21 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
+/* Basic Styles */
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  line-height: 1.6;
-  font-size: 18px;
+  @apply bg-gray-50 text-gray-800 antialiased;
 }
 
-* {
-  box-sizing: border-box;
+/* Container */
+.container {
+  @apply mx-auto px-4 sm:px-6 lg:px-8;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* Buttons */
+.btn-primary {
+  @apply bg-indigo-600 text-white px-6 py-3 rounded-md text-lg font-medium hover:bg-indigo-700 transition duration-300;
+}
+
+.btn-secondary {
+  @apply bg-gray-300 text-gray-800 px-6 py-3 rounded-md text-lg font-medium hover:bg-gray-400 transition duration-300;
+}
+
+/* Form Elements */
+.input-field {
+  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline;
+}
+
+.textarea-field {
+  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline;
+}
+
+.select-field {
+  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline;
+}
+
+/* Card Styles */
+.card {
+  @apply bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105;
+}
+
+.card-body {
+  @apply p-4;
+}
+
+/* Text Styles */
+.h1 {
+  @apply text-4xl font-bold text-center mb-8 text-gray-800;
+}
+
+.h2 {
+  @apply text-3xl font-semibold text-center mb-6 text-gray-700;
 }

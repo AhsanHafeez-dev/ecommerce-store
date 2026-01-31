@@ -23,7 +23,7 @@ export default function Navbar() {
               <img
                 className="h-8 w-auto sm:h-10"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
+                alt="E-commerce Store Logo"
               />
             </Link>
           </div>
@@ -52,7 +52,7 @@ export default function Navbar() {
                     <img
                       className="h-8 w-8 rounded-full"
                       src={session.user?.image || 'https://via.placeholder.com/150'}
-                      alt=""
+                      alt="User Avatar"
                     />
                   </Menu.Button>
                 </div>
@@ -96,7 +96,7 @@ export default function Navbar() {
                 </Transition>
               </Menu>
             ) : (
-              <Link href="/auth/signin" className="ml-8 whitespace-nowrap inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+              <Link href="/auth/signin" className="btn-primary">
                   Sign in
                 </Link>
             )}
@@ -121,7 +121,7 @@ export default function Navbar() {
                   <img
                     className="h-8 w-auto"
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt="E-commerce Store"
+                    alt="E-commerce Store Logo"
                   />
                 </div>
                 <div className="-mr-2">
@@ -160,7 +160,7 @@ export default function Navbar() {
                 </button>
               ) : (
                 <div className="">
-                  <Link href="/auth/signin" className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+                  <Link href="/auth/signin" className="btn-primary">
                       Sign in
                     </Link>
                 </div>

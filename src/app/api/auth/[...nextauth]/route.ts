@@ -1,11 +1,9 @@
-import NextAuth from 'next-auth';
+import NextAuth from '@auth/nextjs';
 import EmailProvider from 'next-auth/providers/email';
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import prismadb from '@/lib/prismadb'; // Adjust path if necessary
-import nodemailer from 'nodemailer';
+import { PrismaAdapter } from '@auth/prisma-adapter';
+import prismadb from '@/lib/prismadb';
 
-
-export const authOptions = {
+export const { handlers } = NextAuth({
   adapter: PrismaAdapter(prismadb),
   providers: [
     EmailProvider({
@@ -18,17 +16,6 @@ export const authOptions = {
         },
       },
       from: process.env.EMAIL_FROM,
-      sendVerificationRequest: async ({ identifier: email, url, provider }) => {
-
-        const transport = nodemailer.createTransport(provider.server as nodemailer.TransportOptions);
-        await transport.sendMail({
-          to: email,
-          from: provider.from,
-          subject: 'Sign in to your E-commerce Store',
-          text: `Please use the following link to sign in: ${url}`,
-          html: `<p>Please use the following link to sign in: <a href="${url}">${url}</a></p>`,
-        });
-      },
     }),
   ],
   callbacks: {
@@ -67,10 +54,4 @@ export const authOptions = {
     verifyRequest: '/auth/verify-request',
     newUser: '/auth/new-user',
   },
-};
-
-const handler = NextAuth(authOptions);
-
-export { handler as GET, handler as POST };
-
-export const runtime = 'edge';
+});

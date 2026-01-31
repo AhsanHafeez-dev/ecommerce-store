@@ -11,11 +11,17 @@ export async function GET(request: Request) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
+    let whereClause = {};
+
+    // If the user is not an admin, they can only see their own orders
+    if (session.user?.role !== 'ADMIN') {
+      whereClause = { userId: session.user.id };
+    }
+
     const orders = await prismadb.order.findMany({
-      where: {
-        userId: session.user.id,
-      },
+      where: whereClause,
       include: {
+        user: true, // Include user information
         orderItems: {
           include: {
             product: true,
@@ -68,16 +74,6 @@ export async function POST(request: Request) {
       },
       include: {
         orderItems: true,
-      },
-    });
-
-    // Clear the user's cart after creating the order
-    await prismadb.cart.update({
-      where: {
-        userId: session.user.id,
-      },
-      data: {
-        cartItems: { deleteMany: {} },
       },
     });
 
