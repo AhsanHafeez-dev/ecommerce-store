@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } => 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { useSession } from 'next-auth/react';

@@ -20,7 +20,7 @@ interface Product {
 }
 
 export default function ProductDetailPage() {
-  const { slug } = useParams();
+  const { slug } = useParams() as { slug: string };
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -100,8 +100,8 @@ export default function ProductDetailPage() {
             onClick={handleAddToCart}
             disabled={product.stock === 0 || !session}
             className={`w-full btn-primary ${product.stock === 0 || !session
-                ? 'opacity-60 cursor-not-allowed'
-                : ''
+              ? 'opacity-60 cursor-not-allowed'
+              : ''
               }`}
           >
             {product.stock === 0 ? 'Out of Stock' : session ? 'Add to Cart' : 'Sign in to Add to Cart'}

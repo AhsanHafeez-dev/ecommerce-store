@@ -1,0 +1,151 @@
+
+> ecommerce-store@0.1.0 build
+> next build
+
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 7 errors:
+./src/app/globals.css
+Error evaluating Node.js code
+Error: Cannot find module 'autoprefixer'
+Require stack:
+- D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\.next\build\chunks\[root-of-the-server]__6d51cb5d._.js
+- D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\.next\build\chunks\[turbopack]_runtime.js
+- D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\.next\build\postcss.js
+    [at Function._resolveFilename (node:internal/modules/cjs/loader:1249:15)]
+    [at Function._load (node:internal/modules/cjs/loader:1075:27)]
+    [at TracingChannel.traceSync (node:diagnostics_channel:322:14)]
+    [at wrapModuleLoad (node:internal/modules/cjs/loader:219:24)]
+    [at Module.require (node:internal/modules/cjs/loader:1340:12)]
+    [at require (node:internal/modules/helpers:138:16)]
+    at turbopack:///[turbopack-node]/transforms/postcss.ts:49:25 [D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\.next\build\chunks\[root-of-the-server]__6d51cb5d._.js:160:33]
+    [at <anonymous>]
+    at Module.init (turbopack:///[turbopack-node]/transforms/postcss.ts:43:33) [D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\.next\build\chunks\[root-of-the-server]__6d51cb5d._.js:155:35]
+    at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:77:20) [D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\.next\build\chunks\[root-of-the-server]__44695d76._.js:429:26]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+./src/app/admin/orders/page.tsx:134:12
+Parsing ecmascript source code failed
+[0m [90m 132 |[39m               [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 133 |[39m             ))
+[31m[1m>[22m[39m[90m 134 |[39m           [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m     |[39m            [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 135 |[39m         )}
+ [90m 136 |[39m       [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 137 |[39m     [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m[0m
+
+Unterminated regexp literal
+
+
+./src/app/admin/products/page.tsx:3:32
+Parsing ecmascript source code failed
+[0m [90m 1 |[39m [32m'use client'[39m[33m;[39m
+ [90m 2 |[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { useEffect[33m,[39m useState } [33m=>[39m [32m'react'[39m[33m;[39m
+ [90m   |[39m                                [31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m [36mimport[39m axios [36mfrom[39m [32m'axios'[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m [33mLoadingSpinner[39m [36mfrom[39m [32m'@/components/LoadingSpinner'[39m[33m;[39m
+ [90m 6 |[39m [36mimport[39m { useSession } [36mfrom[39m [32m'next-auth/react'[39m[33m;[39m[0m
+
+Expected 'from', got '=>'
+
+
+./src/app/profile/page.tsx:135:12
+Parsing ecmascript source code failed
+[0m [90m 133 |[39m               [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 134 |[39m             ))
+[31m[1m>[22m[39m[90m 135 |[39m           [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m     |[39m            [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 136 |[39m         )}
+ [90m 137 |[39m       [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 138 |[39m     [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m[0m
+
+Unterminated regexp literal
+
+
+./src/app/auth/signin/page.tsx:7:1
+Module not found: Can't resolve '@auth/nextjs'
+[0m [90m  5 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m'react'[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m'next/link'[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { signIn } [36mfrom[39m [32m'@auth/nextjs'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m
+ [90m  9 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mSignInPage[39m() {
+ [90m 10 |[39m   [36mconst[39m [csrfToken[33m,[39m setCsrfToken] [33m=[39m useState[33m<[39m[33mstring[39m [33m|[39m [36mnull[39m[33m>[39m([36mnull[39m)[33m;[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signin/page.tsx [Client Component Browser]
+    ./src/app/auth/signin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signin/page.tsx [Client Component SSR]
+    ./src/app/auth/signin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/cart/page.tsx:8:1
+Module not found: Can't resolve '@auth/nextjs'
+[0m [90m  6 |[39m [36mimport[39m [33mImage[39m [36mfrom[39m [32m'next/image'[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m'next/link'[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { useSession } [36mfrom[39m [32m'@auth/nextjs'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m
+ [90m 10 |[39m [36minterface[39m [33mProduct[39m {
+ [90m 11 |[39m   id[33m:[39m string[33m;[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/cart/page.tsx [Client Component Browser]
+    ./src/app/cart/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/cart/page.tsx [Client Component SSR]
+    ./src/app/cart/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/lib/auth.ts:1:1
+Module not found: Can't resolve '@auth/nextjs'
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m [33mNextAuth[39m [36mfrom[39m [32m'@auth/nextjs'[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 2 |[39m [36mimport[39m [33mEmailProvider[39m [36mfrom[39m [32m'next-auth/providers/email'[39m[33m;[39m
+ [90m 3 |[39m [36mimport[39m { [33mPrismaAdapter[39m } [36mfrom[39m [32m'@auth/prisma-adapter'[39m[33m;[39m
+ [90m 4 |[39m [36mimport[39m prismadb [36mfrom[39m [32m'@/lib/prismadb'[39m[33m;[39m[0m
+
+
+
+Import trace:
+  App Route:
+    ./src/lib/auth.ts
+    ./src/app/api/auth/[...nextauth]/route.ts
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at Module.init (turbopack:///[turbopack-node]/transforms/postcss.ts:43:33) [D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\.next\build\chunks\[root-of-the-server]__6d51cb5d._.js:155:35])
+    at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:77:20) [D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\.next\build\chunks\[root-of-the-server]__44695d76._.js:429:26])
+    at <unknown> (./src/app/admin/orders/page.tsx:134:12)
+    at <unknown> (./src/app/admin/products/page.tsx:3:32)
+    at <unknown> (./src/app/profile/page.tsx:135:12)
+    at <unknown> (./src/app/auth/signin/page.tsx:7:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/cart/page.tsx:8:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/lib/auth.ts:1:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)

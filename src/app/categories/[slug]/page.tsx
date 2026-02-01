@@ -28,7 +28,7 @@ interface Category {
 }
 
 export default function CategoryDetailPage() {
-  const { slug } = useParams();
+  const { slug } = useParams() as { slug: string };
   const [category, setCategory] = useState<Category | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

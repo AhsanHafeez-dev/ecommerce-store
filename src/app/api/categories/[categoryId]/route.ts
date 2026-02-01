@@ -1,17 +1,17 @@
 import { NextResponse } from 'next/server';
 import prismadb from '@/lib/prismadb';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '../../auth/[...nextauth]/route';
+import { auth } from '@/lib/auth';
 
-export async function GET(request: Request, { params }: { params: { categoryId: string } }) {
+export async function GET(request: Request, { params }: { params: Promise<{ categoryId: string }> }) {
   try {
-    if (!params.categoryId) {
+    const { categoryId } = await params;
+    if (!categoryId) {
       return new NextResponse('Category ID is required', { status: 400 });
     }
 
     const category = await prismadb.category.findUnique({
       where: {
-        id: params.categoryId,
+        id: categoryId,
       },
       include: {
         products: true,
@@ -25,15 +25,16 @@ export async function GET(request: Request, { params }: { params: { categoryId: 
   }
 }
 
-export async function PATCH(request: Request, { params }: { params: { categoryId: string } }) {
+export async function PATCH(request: Request, { params }: { params: Promise<{ categoryId: string }> }) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
+    const { categoryId } = await params;
 
     if (!session || session.user?.role !== 'ADMIN') {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
-    if (!params.categoryId) {
+    if (!categoryId) {
       return new NextResponse('Category ID is required', { status: 400 });
     }
 
@@ -49,7 +50,7 @@ export async function PATCH(request: Request, { params }: { params: { categoryId
 
     const category = await prismadb.category.update({
       where: {
-        id: params.categoryId,
+        id: categoryId,
       },
       data: {
         name,
@@ -65,21 +66,22 @@ export async function PATCH(request: Request, { params }: { params: { categoryId
   }
 }
 
-export async function DELETE(request: Request, { params }: { params: { categoryId: string } }) {
+export async function DELETE(request: Request, { params }: { params: Promise<{ categoryId: string }> }) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
+    const { categoryId } = await params;
 
     if (!session || session.user?.role !== 'ADMIN') {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
-    if (!params.categoryId) {
+    if (!categoryId) {
       return new NextResponse('Category ID is required', { status: 400 });
     }
 
     const category = await prismadb.category.delete({
       where: {
-        id: params.categoryId,
+        id: categoryId,
       },
     });
 

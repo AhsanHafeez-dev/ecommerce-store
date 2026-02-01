@@ -1,15 +1,16 @@
 import { NextResponse } from 'next/server';
 import prismadb from '@/lib/prismadb';
 
-export async function GET(request: Request, { params }: { params: { slug: string } }) {
+export async function GET(request: Request, { params }: { params: Promise<{ slug: string }> }) {
   try {
-    if (!params.slug) {
+    const { slug } = await params;
+    if (!slug) {
       return new NextResponse('Product slug is required', { status: 400 });
     }
 
     const product = await prismadb.product.findUnique({
       where: {
-        slug: params.slug,
+        slug: slug,
       },
       include: {
         category: true,

@@ -78,7 +78,7 @@ export default function ProfilePage() {
         <div className="flex items-center mb-4">
           <div className="relative w-24 h-24 rounded-full overflow-hidden mr-4 border-2 border-indigo-500">
             <Image
-              src={session.user?.image || 'https://via.placeholder.com/150'}
+              src={session.user?.image || 'https://images.pexels.com/photos/209841/pexels-photo-209841.jpeg'}
               alt={session.user?.name || 'User Avatar'}
               fill
               sizes="100px"
@@ -131,7 +131,7 @@ export default function ProfilePage() {
                   </div>
                 </div>
               </div>
-            ))
+            ))}
           </div>
         )}
       </div>

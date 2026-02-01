@@ -130,7 +130,7 @@ export default function AdminOrdersPage() {
                   </select>
                 </div>
               </div>
-            ))
+            ))}
           </div>
         )}
       </div>

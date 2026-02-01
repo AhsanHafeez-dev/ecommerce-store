@@ -1,10 +1,8 @@
 import Stripe from 'stripe';
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-
-import { stripe } from '@/lib/stripe';
+import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
-import { authOptions } from '../auth/[...nextauth]/route';
+import { stripe } from '@/lib/stripe';
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -19,7 +17,7 @@ export async function OPTIONS() {
 export async function POST(req: Request) {
   try {
     const { productIds } = await req.json();
-    const session = await getServerSession(authOptions);
+    const session = await auth();
 
     if (!session || !session.user?.id) {
       return new NextResponse('Unauthorized', { status: 401 });
@@ -55,8 +53,8 @@ export async function POST(req: Request) {
     const stripeSession = await stripe.checkout.sessions.create({
       line_items,
       mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/order-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/cart?canceled=1`,
+      success_url: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/order-success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/cart?canceled=1`,
       metadata: {
         userId: session.user.id,
         cartItems: JSON.stringify(productIds.map((productId: string) => ({

@@ -1,17 +1,17 @@
 import { NextResponse } from 'next/server';
 import prismadb from '@/lib/prismadb';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '../../auth/[...nextauth]/route';
+import { auth } from '@/lib/auth';
 
-export async function GET(request: Request, { params }: { params: { productId: string } }) {
+export async function GET(request: Request, { params }: { params: Promise<{ productId: string }> }) {
   try {
-    if (!params.productId) {
+    const { productId } = await params;
+    if (!productId) {
       return new NextResponse('Product ID is required', { status: 400 });
     }
 
     const product = await prismadb.product.findUnique({
       where: {
-        id: params.productId,
+        id: productId,
       },
       include: {
         category: true,
@@ -25,15 +25,16 @@ export async function GET(request: Request, { params }: { params: { productId: s
   }
 }
 
-export async function PATCH(request: Request, { params }: { params: { productId: string } }) {
+export async function PATCH(request: Request, { params }: { params: Promise<{ productId: string }> }) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
+    const { productId } = await params;
 
     if (!session || session.user?.role !== 'ADMIN') {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
-    if (!params.productId) {
+    if (!productId) {
       return new NextResponse('Product ID is required', { status: 400 });
     }
 
@@ -58,7 +59,7 @@ export async function PATCH(request: Request, { params }: { params: { productId:
 
     const product = await prismadb.product.update({
       where: {
-        id: params.productId,
+        id: productId,
       },
       data: {
         name,
@@ -78,21 +79,22 @@ export async function PATCH(request: Request, { params }: { params: { productId:
   }
 }
 
-export async function DELETE(request: Request, { params }: { params: { productId: string } }) {
+export async function DELETE(request: Request, { params }: { params: Promise<{ productId: string }> }) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
+    const { productId } = await params;
 
     if (!session || session.user?.role !== 'ADMIN') {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
-    if (!params.productId) {
+    if (!productId) {
       return new NextResponse('Product ID is required', { status: 400 });
     }
 
     const product = await prismadb.product.delete({
       where: {
-        id: params.productId,
+        id: productId,
       },
     });
 

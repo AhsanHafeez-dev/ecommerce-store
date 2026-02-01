@@ -1,0 +1,28 @@
+
+> ecommerce-store@0.1.0 build
+> next build
+
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 12.2s
+  Running TypeScript ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/23) ...
+  Generating static pages using 7 workers (5/23) 
+  Generating static pages using 7 workers (11/23) 
+⨯ useSearchParams() should be wrapped in a suspense boundary at page "/order-success". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at Q (D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\.next\server\chunks\ssr\node_modules_next_920e7746._.js:2:2111)
+    at o (D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\.next\server\chunks\ssr\node_modules_next_920e7746._.js:4:5284)
+    at h (D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\.next\server\chunks\ssr\[root-of-the-server]__4891595e._.js:1:1782)
+    at an (D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:84360)
+    at ai (D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:86179)
+    at al (D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:107953)
+    at as (D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:105368)
+    at aa (D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:84712)
+    at ai (D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:86228)
+    at ai (D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:104708)
+Error occurred prerendering page "/order-success". Read more: https://nextjs.org/docs/messages/prerender-error
+Export encountered an error on /order-success/page: /order-success, exiting the build.
+⨯ Next.js build worker exited with code: 1 and signal: null

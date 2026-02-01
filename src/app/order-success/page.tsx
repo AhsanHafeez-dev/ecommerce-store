@@ -6,10 +6,12 @@ import axios from 'axios';
 import Link from 'next/link';
 import LoadingSpinner from '@/components/LoadingSpinner';
 
-export default function OrderSuccessPage() {
+import { Suspense } from 'react';
+
+function OrderSuccessContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const sessionId = searchParams.get('session_id');
+  const sessionId = searchParams?.get('session_id');
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -60,5 +62,13 @@ export default function OrderSuccessPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function OrderSuccessPage() {
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <OrderSuccessContent />
+    </Suspense>
   );
 }

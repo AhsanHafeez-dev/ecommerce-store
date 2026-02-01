@@ -1,17 +1,17 @@
 import { NextResponse } from 'next/server';
 import prismadb from '@/lib/prismadb';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '../../auth/[...nextauth]/route';
+import { auth } from '@/lib/auth';
 
-export async function PATCH(request: Request, { params }: { params: { orderId: string } }) {
+export async function PATCH(request: Request, { params }: { params: Promise<{ orderId: string }> }) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
+    const { orderId } = await params;
 
     if (!session || session.user?.role !== 'ADMIN') {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
-    if (!params.orderId) {
+    if (!orderId) {
       return new NextResponse('Order ID is required', { status: 400 });
     }
 
@@ -24,7 +24,7 @@ export async function PATCH(request: Request, { params }: { params: { orderId: s
 
     const order = await prismadb.order.update({
       where: {
-        id: params.orderId,
+        id: orderId,
       },
       data: {
         status,

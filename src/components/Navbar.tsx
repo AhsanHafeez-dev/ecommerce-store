@@ -22,10 +22,11 @@ export default function Navbar() {
               <span className="sr-only">E-commerce Store</span>
               <img
                 className="h-8 w-auto sm:h-10"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                src="https://images.pexels.com/photos/35541612/pexels-photo-35541612.jpeg"
                 alt="E-commerce Store Logo"
               />
             </Link>
+
           </div>
           <div className="-my-2 -mr-2 md:hidden">
             <Popover.Button className="relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -42,8 +43,8 @@ export default function Navbar() {
           </Popover.Group>
           <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
             <Link href="/cart" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900 mr-4">
-                <ShoppingCartIcon className="h-6 w-6 inline-block" aria-hidden="true" />
-              </Link>
+              <ShoppingCartIcon className="h-6 w-6 inline-block" aria-hidden="true" />
+            </Link>
             {session ? (
               <Menu as="div" className="relative ml-3">
                 <div>
@@ -51,7 +52,7 @@ export default function Navbar() {
                     <span className="sr-only">Open user menu</span>
                     <img
                       className="h-8 w-8 rounded-full"
-                      src={session.user?.image || 'https://via.placeholder.com/150'}
+                      src={session.user?.image || 'https://images.pexels.com/photos/209841/pexels-photo-209841.jpeg'}
                       alt="User Avatar"
                     />
                   </Menu.Button>
@@ -97,8 +98,8 @@ export default function Navbar() {
               </Menu>
             ) : (
               <Link href="/auth/signin" className="btn-primary">
-                  Sign in
-                </Link>
+                Sign in
+              </Link>
             )}
           </div>
         </div>
@@ -120,7 +121,7 @@ export default function Navbar() {
                 <div>
                   <img
                     className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    src="https://images.pexels.com/photos/35541612/pexels-photo-35541612.jpeg"
                     alt="E-commerce Store Logo"
                   />
                 </div>
@@ -134,19 +135,19 @@ export default function Navbar() {
               <div className="mt-6">
                 <nav className="grid gap-y-8">
                   <Link href="/products" className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50">
-                      <span className="ml-3 text-base font-medium text-gray-900">Products</span>
-                    </Link>
+                    <span className="ml-3 text-base font-medium text-gray-900">Products</span>
+                  </Link>
                   <Link href="/categories" className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50">
-                      <span className="ml-3 text-base font-medium text-gray-900">Categories</span>
-                    </Link>
+                    <span className="ml-3 text-base font-medium text-gray-900">Categories</span>
+                  </Link>
                   {session?.user?.role === 'ADMIN' && (
                     <Link href="/admin/dashboard" className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50">
-                        <span className="ml-3 text-base font-medium text-gray-900">Admin</span>
-                      </Link>
+                      <span className="ml-3 text-base font-medium text-gray-900">Admin</span>
+                    </Link>
                   )}
                   <Link href="/cart" className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50">
-                      <span className="ml-3 text-base font-medium text-gray-900">Cart</span>
-                    </Link>
+                    <span className="ml-3 text-base font-medium text-gray-900">Cart</span>
+                  </Link>
                 </nav>
               </div>
             </div>
@@ -161,8 +162,8 @@ export default function Navbar() {
               ) : (
                 <div className="">
                   <Link href="/auth/signin" className="btn-primary">
-                      Sign in
-                    </Link>
+                    Sign in
+                  </Link>
                 </div>
               )}
             </div>

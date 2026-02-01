@@ -1,0 +1,59 @@
+
+> ecommerce-store@0.1.0 build
+> next build
+
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 3 errors:
+./src/app/globals.css
+Error evaluating Node.js code
+Error: Cannot apply unknown utility class `focus:shadow-outline`
+    [at onInvalidCandidate (D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\node_modules\tailwindcss\dist\lib.js:21:1511)]
+    [at Te (D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\node_modules\tailwindcss\dist\lib.js:16:36652)]
+    [at D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\node_modules\tailwindcss\dist\lib.js:21:355]
+    [at Rr (D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\node_modules\tailwindcss\dist\lib.js:3:1718)]
+    [at _ (D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\node_modules\tailwindcss\dist\lib.js:3:1377)]
+    [at $e (D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\node_modules\tailwindcss\dist\lib.js:21:172)]
+    [at un (D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\node_modules\tailwindcss\dist\lib.js:38:294)]
+    [at async cn (D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\node_modules\tailwindcss\dist\lib.js:38:631)]
+    [at async Xr (D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\node_modules\@tailwindcss\node\dist\index.js:10:3417)]
+    [at async p (D:\Temp\ALLCODESCOMBINE\react\Agent\ai-coding-agent\ecommerce-store\node_modules\@tailwindcss\postcss\dist\index.js:8:3200)]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+./src/app/admin/orders/page.tsx:134:12
+Parsing ecmascript source code failed
+[0m [90m 132 |[39m               [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 133 |[39m             ))
+[31m[1m>[22m[39m[90m 134 |[39m           [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m     |[39m            [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 135 |[39m         )}
+ [90m 136 |[39m       [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 137 |[39m     [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m[0m
+
+Unterminated regexp literal
+
+
+./src/app/profile/page.tsx:135:12
+Parsing ecmascript source code failed
+[0m [90m 133 |[39m               [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 134 |[39m             ))
+[31m[1m>[22m[39m[90m 135 |[39m           [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m     |[39m            [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 136 |[39m         )}
+ [90m 137 |[39m       [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 138 |[39m     [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m[0m
+
+Unterminated regexp literal
+
+
+    at <unknown> (./src/app/admin/orders/page.tsx:134:12)
+    at <unknown> (./src/app/profile/page.tsx:135:12)

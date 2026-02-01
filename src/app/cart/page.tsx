@@ -5,7 +5,7 @@ import axios from 'axios';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSession } from '@auth/nextjs';
+import { useSession } from 'next-auth/react';
 
 interface Product {
   id: string;

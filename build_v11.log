@@ -1,0 +1,53 @@
+
+> ecommerce-store@0.1.0 build
+> next build
+
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 13.9s
+  Running TypeScript ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/23) ...
+  Generating static pages using 7 workers (5/23) 
+  Generating static pages using 7 workers (11/23) 
+  Generating static pages using 7 workers (17/23) 
+✓ Generating static pages using 7 workers (23/23) in 2.5s
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /admin/categories
+├ ○ /admin/dashboard
+├ ○ /admin/orders
+├ ○ /admin/products
+├ ƒ /api/auth/[...nextauth]
+├ ƒ /api/cart
+├ ƒ /api/categories
+├ ƒ /api/categories/[categoryId]
+├ ƒ /api/categories/slug/[slug]
+├ ƒ /api/checkout
+├ ƒ /api/confirm-order
+├ ƒ /api/orders
+├ ƒ /api/orders/[orderId]
+├ ƒ /api/products
+├ ƒ /api/products/[productId]
+├ ƒ /api/products/slug/[slug]
+├ ƒ /api/upload
+├ ○ /auth/new-user
+├ ○ /auth/signin
+├ ○ /auth/verify-request
+├ ○ /cart
+├ ○ /categories
+├ ƒ /categories/[slug]
+├ ○ /order-success
+├ ○ /products
+├ ƒ /products/[slug]
+└ ○ /profile
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
