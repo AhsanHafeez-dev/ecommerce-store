@@ -27,6 +27,17 @@ export async function POST(req: Request) {
 
     const cartItems = JSON.parse(cartItemsString);
 
+    for (const item of cartItems) {
+      await prismadb.product.update({
+        where: { id: item.productId },
+        data: {
+          stock: {
+            decrement: item.quantity,
+          },
+        },
+      });
+    }
+
     const order = await prismadb.order.create({
       data: {
         userId: userId,
