@@ -4,8 +4,10 @@ import { PrismaAdapter } from '@auth/prisma-adapter';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { compare } from 'bcryptjs';
 import prismadb from '@/lib/prismadb';
+import { authConfig } from './auth.config';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+    ...authConfig,
     adapter: PrismaAdapter(prismadb) as any,
     providers: [
         EmailProvider({
@@ -53,22 +55,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             },
         }),
     ],
-    callbacks: {
-        async session({ session, token }) {
-            if (session.user && token) {
-                session.user.role = token.role as any;
-                session.user.id = token.id as string;
-            }
-            return session;
-        },
-        async jwt({ token, user }) {
-            if (user) {
-                token.role = user.role;
-                token.id = user.id;
-            }
-            return token;
-        },
-    },
     events: {
         async createUser({ user }) {
             if (user?.id) {
@@ -78,15 +64,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 });
             }
         },
-    },
-    session: {
-        strategy: 'jwt',
-    },
-    secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET,
-    trustHost: true,
-    pages: {
-        signIn: '/auth/signin',
-        verifyRequest: '/auth/verify-request',
-        newUser: '/auth/new-user',
     },
 });
