@@ -8,6 +8,7 @@ import { authConfig } from './auth.config';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     ...authConfig,
+    debug: true,
     adapter: PrismaAdapter(prismadb) as any,
     providers: [
         EmailProvider({

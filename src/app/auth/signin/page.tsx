@@ -59,6 +59,7 @@ export default function SignInPage() {
       } else {
         const result = await signIn('email', { email, redirect: false });
         if (result?.error) {
+          console.log(result.error);
           setError('Failed to send magic link. Please try again.');
         } else {
           // For magic link we can't easily check role on client immediately without polling or page load

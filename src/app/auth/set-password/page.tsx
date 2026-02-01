@@ -1,4 +1,4 @@
-'use client';
+npm run dev'use client';
 
 import { useState } from 'react';
 import { setPassword } from './actions';
